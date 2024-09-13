@@ -51,7 +51,7 @@ jobs:
 
       - name: Get version from tag
         id: get-version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
       - name: Download artifact from test job
         id: donwload-artifact
@@ -62,15 +62,18 @@ jobs:
       - name: Extract release notes
         id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v2
+    
+      - name: Get repository name
+        id: repo-name
+        uses: MariachiBear/get-repo-name-action@v1.1.0
+        with:
+          string-case: 'pascalCase'
 
       - name: Rename release assets
         run: |
-            echo ${{ steps.donwload-artifact.outputs.download-path }}
-            echo ${{ github.repository.name }}
-            echo ${{ steps.get-version.outputs.VERSION }}
             for ARCH in armeabi-v7a arm64-v8a x86_64; do
                 mv "${{ steps.donwload-artifact.outputs.download-path }}/app-${ARCH}-release.apk" \
-                "${{ github.repository.name }}-${{ steps.get-version.outputs.VERSION }}-${ARCH}.apk"
+                "${{ steps.repo-name.outputs.repository-name }}-${{ steps.get-version.outputs.version }}-${ARCH}.apk"
             done
 
       - name: Create Release
