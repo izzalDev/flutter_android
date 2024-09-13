@@ -1,0 +1,58 @@
+name: Pre-Commit Workflow
+
+on:
+  push:
+    branches: '*'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v3
+
+      - name: Set up Flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+
+      - name: Install Flutter dependencies
+        run: flutter pub get
+
+      - name: Run initial pre-commit action
+        uses: pre-commit/action@v3.0.1
+        id: first_pre_commit
+
+      - name: Run pre-commit checks on all files
+        if: always()
+        run: pre-commit run --all-files
+        id: pre_commit
+
+      - name: Commit pre-commit changes on success
+        uses: stefanzweifel/git-auto-commit-action@v5
+        id: commit_changes
+        if: failure() && steps.pre_commit.conclusion == 'success'
+        with:
+          commit_message: "[pre-commit] Update pre-commit changes"
+
+      - name: Comment on failed commit or pre-commit check
+        if: |
+            failure() && 
+            github.event_name == 'pull_request' && 
+            steps.commit_changes.conclusion == 'failure'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: .github/pre_commit_failed.md
+          reactions: eyes
