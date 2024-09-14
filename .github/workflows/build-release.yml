@@ -50,7 +50,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Check version
+      - name: Check valid version
         id: get-version
         run: |
           echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
@@ -72,7 +72,7 @@ jobs:
             exit 1
           fi
 
-      - name: Download artifact from test job
+      - name: Download artifact from test-and-build job
         id: donwload-artifact
         uses: actions/download-artifact@v4
         with:
@@ -100,7 +100,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          name: Release v${{ steps.get-version.outputs.version }}
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
           files: ${{ steps.donwload-artifact.outputs.download-path }}/*.apk
 
