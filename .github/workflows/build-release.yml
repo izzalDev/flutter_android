@@ -9,6 +9,7 @@ on:
     branches: '*'
 
 jobs:
+
   test-and-build:
     runs-on: ubuntu-latest
     steps:
@@ -49,9 +50,27 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Get version from tag
+      - name: Check version
         id: get-version
-        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: |
+          echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          pubspec_version=$(grep '^version:' "$PUBSPEC_FILE" | awk '{print $2}')
+          if [[ "$pubspec_version" != "$version" ]]; then
+            echo "Mismatch: pubspec.yaml version ($pubspec_version) is not equal to GitHub version ($version)"
+            exit 1
+          else
+            echo "Version match: pubspec.yaml version and GitHub version are the same."
+          fi
+
+      - name: Check valid changelog
+        id: check-changelog
+        run: |
+          if grep -q "## ${{ steps.get-version.outputs.version }}" "CHANGELOG.md"; then
+            echo "Changelog entry found for version $current_version."
+          else
+            echo "No changelog entry found for version ${{ steps.get-version.outputs.version }} in $CHANGELOG_FILE."
+            exit 1
+          fi
 
       - name: Download artifact from test job
         id: donwload-artifact
@@ -73,7 +92,7 @@ jobs:
         run: |
             for ARCH in armeabi-v7a arm64-v8a x86_64; do
                 mv "${{ steps.donwload-artifact.outputs.download-path }}/app-${ARCH}-release.apk" \
-                "${{ steps.repo-name.outputs.repository-name }}-${{ steps.get-version.outputs.version }}-${ARCH}.apk"
+                "${{ steps.repo-name.outputs.repository-name }}-v${{ steps.get-version.outputs.version }}-${ARCH}.apk"
             done
 
       - name: Create Release
@@ -84,3 +103,12 @@ jobs:
           name: Release ${{ github.ref }}
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
           files: ${{ steps.donwload-artifact.outputs.download-path }}/*.apk
+
+      
+      - name: Remove tag on failed
+        if: failure()
+        uses: dev-drprasad/delete-tag-and-release@v1.1
+        with:
+          tag_name: v${{ steps.get-version.outputs.version }}
+          delete_release: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
