@@ -2,13 +2,14 @@
 
 ![Flutter Version](https://img.shields.io/badge/Flutter-v2.5.5-blue)
 ![Dart Version](https://img.shields.io/badge/Dart-v2.5.5-blue)
-![Github All Releases](https://img.shields.io/github/downloads/izzaldev/finance-management/total.svg)
+![Github All Releases](https://img.shields.io/github/downloads/github_username/repo_name/total.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Version](https://img.shields.io/github/v/release/izzaldev/finance-management)
-[![Stars](https://img.shields.io/github/stars/izzaldev/finance-management)](https://github.com/izzaldev/finance-management/stargazers)
-[![Forks](https://img.shields.io/github/forks/izzaldev/finance-management)](https://github.com/izzaldev/finance-management/network/members)
-[![Issues](https://img.shields.io/github/issues/izzaldev/finance-management)](https://github.com/izzaldev/finance-management/issues)
-[![Contributors](https://img.shields.io/github/contributors/izzaldev/finance-management)](https://github.com/izzaldev/finance-management/graphs/contributors)
+![Version](https://img.shields.io/github/v/release/izzaldev/repo_name)
+
+[![Stars](https://img.shields.io/github/stars/github_username/repo_name)](https://github.com/github_username/repo_name/stargazers)
+[![Forks](https://img.shields.io/github/forks/github_username/repo_name)](https://github.com/github_username/repo_name/network/members)
+[![Issues](https://img.shields.io/github/issues/github_username/repo_name)](https://github.com/github_username/repo_name/issues)
+[![Contributors](https://img.shields.io/github/contributors/github_username/repo_name)](https://github.com/github_username/repo_name/graphs/contributors)
 
 </div>
 
@@ -64,7 +65,7 @@
 
 </div>
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `email_domain`, `email`, `project_title`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,31 +79,28 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- **Flutter**  
+  Install Flutter by following the official documentation for your operating system:  
+  [Flutter Installation Guide](https://docs.flutter.dev/get-started/install)
+
+- **pre-commit**  
+  Pre-commit is a framework for managing and maintaining multi-language pre-commit hooks.  
+  Install it by following the instructions at:  
+  [Pre-commit Installation Guide](https://pre-commit.com/#install)
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
-3. Install NPM packages
+2. Install Flutter dependencies
    ```sh
-   npm install
+   flutter pub get
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
+3. Install pre-commit hooks
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+   pre-commit install
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -143,9 +141,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+3. Commit your Changes (`git commit -m 'Add some amazing-feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -165,7 +163,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - email@email_domain.com
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
