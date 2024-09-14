@@ -49,8 +49,8 @@ jobs:
 
       - name: Comment on failed commit or pre-commit check
         if: |
-            failure() && 
-            github.event_name == 'pull_request' && 
+            failure() &&
+            github.event_name == 'pull_request' &&
             steps.commit_changes.conclusion == 'failure'
         uses: thollander/actions-comment-pull-request@v2
         with:

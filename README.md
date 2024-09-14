@@ -60,7 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <div align=center>
-  
+
 ![screenshot](https://github.com/user-attachments/assets/52eff281-fc80-4546-8fa8-e0d2825d7288)
 
 </div>
@@ -79,13 +79,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-- **Flutter**  
-  Install Flutter by following the official documentation for your operating system:  
+- **Flutter**
+  Install Flutter by following the official documentation for your operating system:
   [Flutter Installation Guide](https://docs.flutter.dev/get-started/install)
 
-- **pre-commit**  
-  Pre-commit is a framework for managing and maintaining multi-language pre-commit hooks.  
-  Install it by following the instructions at:  
+- **pre-commit**
+  Pre-commit is a framework for managing and maintaining multi-language pre-commit hooks.
+  Install it by following the instructions at:
   [Pre-commit Installation Guide](https://pre-commit.com/#install)
 
 ### Installation

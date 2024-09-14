@@ -81,7 +81,7 @@ jobs:
       - name: Extract release notes
         id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v2
-    
+
       - name: Get repository name
         id: repo-name
         uses: MariachiBear/get-repo-name-action@v1.1.0
@@ -104,7 +104,7 @@ jobs:
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
           files: ${{ steps.donwload-artifact.outputs.download-path }}/*.apk
 
-      
+
       - name: Remove tag on failed
         if: failure()
         uses: dev-drprasad/delete-tag-and-release@v1.1
