@@ -84,7 +84,7 @@ description when links are shared are language-appropriate
 - Italian translation (#332).
 - Indonesian translation (#336).
 
-## [1.0.5] - 2017-06-20
+## [1.0.0] - 2017-06-20
 
 ### Added
 

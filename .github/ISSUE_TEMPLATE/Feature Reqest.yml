@@ -1,0 +1,45 @@
+name: 🧩 Feature Request
+description: Suggest an idea or a feature for this project
+labels: ["feature request"]
+
+body:
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched for a solution in the relevant community forums or documentation and have not found a suitable answer.
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the problem you'd like to have solved
+      description: Provide a clear and concise description of the problem.
+      placeholder: I am always frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: ideal-solution
+    attributes:
+      label: Describe the ideal solution
+      description: Provide a clear and concise description of the desired outcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives-and-workarounds
+    attributes:
+      label: Alternatives and current workarounds
+      description: Describe any alternatives you have considered or any workarounds currently in place.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other relevant context or screenshots about the feature request.
+    validations:
+      required: false
