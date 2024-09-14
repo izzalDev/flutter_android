@@ -65,10 +65,10 @@ jobs:
       - name: Check valid changelog
         id: check-changelog
         run: |
-          if grep -q "## ${{ steps.get-version.outputs.version }}" "CHANGELOG.md"; then
+          if grep -q "## \[${{ steps.get-version.outputs.version }}\]" "CHANGELOG.md"; then
             echo "Changelog entry found for version $current_version."
           else
-            echo "No changelog entry found for version ${{ steps.get-version.outputs.version }} in $CHANGELOG_FILE."
+            echo "No changelog entry found for version ${{ steps.get-version.outputs.version }} in CHANGELOG.md."
             exit 1
           fi
 
